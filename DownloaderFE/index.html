@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>HMK Downloader Free</title>
-  <link rel="shortcut icon" href="https://ik.imagekit.io/hassaan/HMKDownlaoder_J6jqDqrXP" type="image/x-icon">
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HMK Downloader Free | Download YouTube, Facebook & Instagram Videos</title>
+  <meta name="description" content="HMK Downloader Free is a fast and easy online tool to download videos and thumbnails from YouTube, Facebook, and Instagram in high quality without watermark." />
+  <meta name="keywords" content="HMK Downloader, YouTube downloader, Facebook video downloader, Instagram downloader, free video downloader, HD thumbnail downloader, online video download tool" />
+  <meta name="author" content="Hassaan Haider" />
+  <meta property="og:title" content="HMK Downloader Free | Download Videos Instantly" />
+  <meta property="og:description" content="Download YouTube, Facebook, and Instagram videos easily with HMK Downloader Free — 100% free and watermark-free." />
+  <meta property="og:image" content="https://ik.imagekit.io/hassaan/HMKDownlaoder_J6jqDqrXP" />
+  <meta property="og:url" content="https://ik.imagekit.io/hassaan/HMKDownlaoder_J6jqDqrXP" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="HMK Downloader Free" />
+  <meta name="twitter:description" content="Free online downloader for YouTube, Facebook, and Instagram videos and thumbnails." />
+  <meta name="twitter:image" content="https://ik.imagekit.io/hassaan/HMKDownlaoder_J6jqDqrXP" />
+  <link rel="canonical" href="https://ik.imagekit.io/hassaan/HMKDownlaoder_J6jqDqrXP" />
+  <link rel="shortcut icon" href="https://ik.imagekit.io/hassaan/HMKDownlaoder_J6jqDqrXP" type="image/x-icon" />
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     body {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -40,10 +54,10 @@
     </div>
 
     <!-- Tabs -->
-    <div class="px-6 pt-4 flex gap-2">
+    <div class="px-6 pt-4 flex gap-2 flex-wrap">
       <button onclick="switchTab('youtube')" id="youtube-tab" class="tab-active flex-1 py-2 px-4 rounded-lg font-medium transition-colors">YT Thumbnail</button>
       <button onclick="switchTab('facebook')" id="facebook-tab" class="flex-1 py-2 px-4 rounded-lg font-medium bg-gray-100 text-gray-700 transition-colors">Facebook</button>
-      <button onclick="switchTab('search')" id="search-tab" class="flex-1 py-2 px-4 rounded-lg font-medium bg-gray-100 text-gray-700 transition-colors">Search Thumbnails</button>
+      <button onclick="switchTab('search')" id="search-tab" class="flex-1 py-2 px-4 rounded-lg font-medium bg-gray-100 text-gray-700 transition-colors">Search Thumbs</button>
     </div>
 
     <div class="p-6">
@@ -58,9 +72,7 @@
         <button onclick="generateYouTubeContent()" class="w-full bg-cyan-400 hover:bg-cyan-500 text-white font-semibold py-3 rounded-xl">Get Video Content</button>
 
         <div id="yt-preview-empty" class="video-preview-container rounded-xl p-12 flex flex-col items-center justify-center min-h-[200px]">
-          <svg class="w-16 h-16 text-gray-300 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-          </svg>
+          <svg stroke="gray" fill="gray" stroke-width="0" viewBox="0 0 24 24" height="200px" width="200px" xmlns="http://www.w3.org/2000/svg"><g id="Image_On"><g><path d="M18.435,3.06H5.565a2.5,2.5,0,0,0-2.5,2.5V18.44a2.507,2.507,0,0,0,2.5,2.5h12.87a2.507,2.507,0,0,0,2.5-2.5V5.56A2.5,2.5,0,0,0,18.435,3.06ZM4.065,5.56a1.5,1.5,0,0,1,1.5-1.5h12.87a1.5,1.5,0,0,1,1.5,1.5v8.66l-3.88-3.88a1.509,1.509,0,0,0-2.12,0l-4.56,4.57a.513.513,0,0,1-.71,0l-.56-.56a1.522,1.522,0,0,0-2.12,0l-1.92,1.92Zm15.87,12.88a1.5,1.5,0,0,1-1.5,1.5H5.565a1.5,1.5,0,0,1-1.5-1.5v-.75L6.7,15.06a.5.5,0,0,1,.35-.14.524.524,0,0,1,.36.14l.55.56a1.509,1.509,0,0,0,2.12,0l4.57-4.57a.5.5,0,0,1,.71,0l4.58,4.58Z"></path><path d="M8.062,10.565a2.5,2.5,0,1,1,2.5-2.5A2.5,2.5,0,0,1,8.062,10.565Zm0-4a1.5,1.5,0,1,0,1.5,1.5A1.5,1.5,0,0,0,8.062,6.565Z"></path></g></g></svg>
           <p class="text-gray-400 text-sm">Thumbnail Preview goes here</p>
         </div>
 
@@ -99,8 +111,8 @@
     </div>
   </div>
 
-  <script>
-  const API_BASE_URL = 'http://localhost:3000';
+ <script>
+  const API_BASE_URL = 'https://hmk-codeweb-downloads.onrender.com';
   let YTThumnailURL = '';
 
   // Utility to show loading text or spinner
@@ -120,16 +132,26 @@
     }
   }
 
-  // Switch Tabs
+  // Switch Tabs + Save to localStorage
   function switchTab(tab) {
     const tabs = ['youtube', 'facebook', 'search'];
     tabs.forEach(t => {
       document.getElementById(`${t}-tab`).classList.remove('tab-active');
       document.getElementById(`${t}-content`).classList.add('hidden');
     });
+
     document.getElementById(`${tab}-tab`).classList.add('tab-active');
     document.getElementById(`${tab}-content`).classList.remove('hidden');
+
+    // Save active tab in localStorage
+    localStorage.setItem('activeTab', tab);
   }
+
+  // Restore last opened tab on reload
+  window.addEventListener('DOMContentLoaded', () => {
+    const savedTab = localStorage.getItem('activeTab') || 'youtube';
+    switchTab(savedTab);
+  });
 
   // ---- YouTube Thumbnail ----
   async function generateYouTubeContent() {
@@ -242,6 +264,7 @@
         body: JSON.stringify({ SearchQuery: query })
       });
       const data = await res.json();
+     
 
       resultsContainer.innerHTML = '';
 
@@ -255,15 +278,15 @@
         card.className = 'bg-white rounded-xl shadow-lg overflow-hidden flex flex-col';
 
         const iframe = document.createElement('iframe');
-        iframe.src = `https://www.youtube.com/embed/${video.videoId}`;
+        iframe.src = `https://www.youtube.com/embed/${video?.videoId}`;
         iframe.className = 'w-full aspect-video';
         iframe.allowFullscreen = true;
 
         const info = document.createElement('div');
         info.className = 'p-3 flex-1 flex flex-col justify-between';
         info.innerHTML = `
-          <h3 class="font-semibold text-gray-900 text-sm line-clamp-2">${video.title}</h3>
-          <p class="text-xs text-gray-500 mt-1">${video.author.name}</p>
+          <h3 class="font-semibold text-gray-900 text-sm line-clamp-2">${video?.title}</h3>
+          <p class="text-xs text-gray-500 mt-1">${video?.author?.name}</p>
         `;
 
         const btn = document.createElement('button');
@@ -271,7 +294,7 @@
         btn.textContent = 'Download Thumbnail';
         btn.onclick = async () => {
           try {
-            const response = await fetch(video.thumbnail);
+            const response = await fetch(video?.thumbnail);
             const blob = await response.blob();
             const blobUrl = URL.createObjectURL(blob);
             const link = document.createElement("a");
@@ -297,6 +320,7 @@
     }
   }
 </script>
+
 
 </body>
 </html>
