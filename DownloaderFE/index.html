@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HMK Downloader Free</title>
+  <link rel="shortcut icon" href="https://ik.imagekit.io/hassaan/HMKDownlaoder_J6jqDqrXP" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    .tab-active { background-color: #22d3ee !important; color: white !important; }
+    .video-preview-container {
+      border: 2px dashed #cbd5e1;
+      background-color: #f8fafc;
+    }
+    .quality-dropdown {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background-color: rgba(34, 211, 238, 0.9);
+      backdrop-filter: blur(4px);
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center p-4">
+  <div class="w-full max-w-5xl bg-white rounded-3xl shadow-2xl overflow-hidden">
+    <!-- Header -->
+    <div class="p-6 pb-4 flex items-center justify-between border-b border-gray-100">
+      <div>
+        <h1 class="text-2xl font-bold text-gray-900">HMK CodeWeb</h1>
+        <h2 class="text-2xl font-bold text-cyan-400">DOWNLOADER</h2>
+      </div>
+      <a href="https://hassaan-haider.netlify.app" class="h-12 hover:scale-90 transition-all cursor-pointer w-12">
+        <img src="https://ik.imagekit.io/hassaan/HMK_Donwloader_Black_7_HUbrDoW" alt="">
+      </a>
+    </div>
+
+    <!-- Tabs -->
+    <div class="px-6 pt-4 flex gap-2">
+      <button onclick="switchTab('youtube')" id="youtube-tab" class="tab-active flex-1 py-2 px-4 rounded-lg font-medium transition-colors">YT Thumbnail</button>
+      <button onclick="switchTab('facebook')" id="facebook-tab" class="flex-1 py-2 px-4 rounded-lg font-medium bg-gray-100 text-gray-700 transition-colors">Facebook</button>
+      <button onclick="switchTab('search')" id="search-tab" class="flex-1 py-2 px-4 rounded-lg font-medium bg-gray-100 text-gray-700 transition-colors">Search Thumbnails</button>
+    </div>
+
+    <div class="p-6">
+      <!-- YouTube Thumbnail Tab -->
+      <div id="youtube-content" class="space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">
+            Enter YouTube URL
+          </label>
+          <input type="text" id="yt-url-input" placeholder="Enter YouTube Link/URL to Download Thumbnail" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400">
+        </div>
+        <button onclick="generateYouTubeContent()" class="w-full bg-cyan-400 hover:bg-cyan-500 text-white font-semibold py-3 rounded-xl">Get Video Content</button>
+
+        <div id="yt-preview-empty" class="video-preview-container rounded-xl p-12 flex flex-col items-center justify-center min-h-[200px]">
+          <svg class="w-16 h-16 text-gray-300 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+          </svg>
+          <p class="text-gray-400 text-sm">Thumbnail Preview goes here</p>
+        </div>
+
+        <button onclick="downloadYouTubeThumbnail()" id="yt-download-btn" class="w-full bg-cyan-400 hover:bg-cyan-500 text-white font-semibold py-3 rounded-xl">Download Thumbnail</button>
+      </div>
+
+      <!-- Facebook Tab -->
+      <div id="facebook-content" class="hidden space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Enter Facebook URL</label>
+          <input type="text" id="fb-url-input" placeholder="Enter Facebook Link/URL" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400">
+        </div>
+        <button onclick="generateFacebookContent()" class="w-full bg-cyan-400 hover:bg-cyan-500 text-white font-semibold py-3 rounded-xl">Generate Video Content</button>
+        <div id="fb-preview-empty" class="video-preview-container rounded-xl p-12 flex flex-col items-center justify-center min-h-[200px]">
+          <svg class="w-16 h-16 text-gray-300 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+          </svg>
+          <p class="text-gray-400 text-sm">Video Preview goes here</p>
+        </div>
+      </div>
+
+      <!-- Search Thumbnails Tab -->
+      <div id="search-content" class="hidden space-y-4">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-2">Search YouTube Thumbnails</label>
+          <input type="text" id="search-query" placeholder="Type video name..." class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-cyan-400">
+        </div>
+        <button onclick="searchThumbnails()" class="w-full bg-cyan-400 hover:bg-cyan-500 text-white font-semibold py-3 rounded-xl">Search</button>
+        <div id="search-results" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="px-6 pb-6 text-center">
+      <p class="text-xs text-gray-500">Powered by <span class="font-semibold">HMK CodeWeb</span></p>
+    </div>
+  </div>
+
+  <script>
+  const API_BASE_URL = 'http://localhost:3000';
+  let YTThumnailURL = '';
+
+  // Utility to show loading text or spinner
+  function setLoading(containerId, isLoading, message = 'Loading...') {
+    const container = document.getElementById(containerId);
+    if (isLoading) {
+      container.innerHTML = `
+        <div class="flex flex-col items-center justify-center py-10 text-gray-500">
+          <svg class="animate-spin w-8 h-8 mb-2 text-cyan-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+          </svg>
+          <p>${message}</p>
+        </div>`;
+    } else {
+      container.innerHTML = '';
+    }
+  }
+
+  // Switch Tabs
+  function switchTab(tab) {
+    const tabs = ['youtube', 'facebook', 'search'];
+    tabs.forEach(t => {
+      document.getElementById(`${t}-tab`).classList.remove('tab-active');
+      document.getElementById(`${t}-content`).classList.add('hidden');
+    });
+    document.getElementById(`${tab}-tab`).classList.add('tab-active');
+    document.getElementById(`${tab}-content`).classList.remove('hidden');
+  }
+
+  // ---- YouTube Thumbnail ----
+  async function generateYouTubeContent() {
+    const url = document.getElementById('yt-url-input').value.trim();
+    const preview = document.getElementById('yt-preview-empty');
+
+    if (!url) {
+      preview.innerHTML = `<p class="text-red-500 text-sm text-center py-6">Please enter a YouTube URL</p>`;
+      return;
+    }
+
+    setLoading('yt-preview-empty', true, 'Fetching YouTube thumbnail...');
+    try {
+      const res = await fetch(`${API_BASE_URL}/yt-thumbnail`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url })
+      });
+      const result = await res.json();
+
+      if (!result?.data?.thumbnail) {
+        preview.innerHTML = `<p class="text-red-500 text-center py-6">Failed to fetch thumbnail. Try another URL.</p>`;
+        return;
+      }
+
+      YTThumnailURL = result.data.thumbnail;
+      preview.innerHTML = '';
+      const img = document.createElement('img');
+      img.src = YTThumnailURL;
+      img.classList.add('w-full', 'h-full', 'object-cover', 'rounded-lg');
+      preview.appendChild(img);
+    } catch (e) {
+      console.error(e);
+      preview.innerHTML = `<p class="text-red-500 text-center py-6">Error connecting to server. Please try again later.</p>`;
+    }
+  }
+
+  async function downloadYouTubeThumbnail() {
+    if (!YTThumnailURL) {
+      alert('No thumbnail available to download');
+      return;
+    }
+
+    try {
+      const response = await fetch(YTThumnailURL);
+      const blob = await response.blob();
+      const blobUrl = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = "HMK-Thumbnail.jpg";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(blobUrl);
+    } catch (error) {
+      alert('Failed to download thumbnail. Please try again.');
+    }
+  }
+
+  // ---- Facebook ----
+  async function generateFacebookContent() {
+    const url = document.getElementById('fb-url-input').value.trim();
+    const preview = document.getElementById('fb-preview-empty');
+
+    if (!url) {
+      preview.innerHTML = `<p class="text-red-500 text-sm text-center py-6">Please enter a Facebook URL</p>`;
+      return;
+    }
+
+    setLoading('fb-preview-empty', true, 'Fetching Facebook video data...');
+    try {
+      const res = await fetch(`${API_BASE_URL}/fb-down`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url })
+      });
+      const result = await res.json();
+
+      if (!result?.data?.thumbnail) {
+        preview.innerHTML = `<p class="text-red-500 text-center py-6">Unable to fetch video thumbnail.</p>`;
+        return;
+      }
+
+      preview.innerHTML = '';
+      const img = document.createElement('img');
+      img.src = result.data.thumbnail;
+      img.classList.add('w-full', 'h-full', 'object-cover', 'rounded-lg');
+      preview.appendChild(img);
+    } catch (e) {
+      console.error(e);
+      preview.innerHTML = `<p class="text-red-500 text-center py-6">Error connecting to backend. Please try again later.</p>`;
+    }
+  }
+
+  // ---- Search Thumbnails ----
+  async function searchThumbnails() {
+    const query = document.getElementById('search-query').value.trim();
+    const resultsContainer = document.getElementById('search-results');
+
+    if (!query) {
+      resultsContainer.innerHTML = `<p class="text-red-500 text-center py-6">Please enter a search term.</p>`;
+      return;
+    }
+
+    setLoading('search-results', true, 'Searching YouTube videos...');
+    try {
+      const res = await fetch(`${API_BASE_URL}/search`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ SearchQuery: query })
+      });
+      const data = await res.json();
+
+      resultsContainer.innerHTML = '';
+
+      if (!data?.data?.length) {
+        resultsContainer.innerHTML = `<p class="text-gray-500 text-center py-6">No results found.</p>`;
+        return;
+      }
+
+      data.data.forEach(video => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-xl shadow-lg overflow-hidden flex flex-col';
+
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube.com/embed/${video.videoId}`;
+        iframe.className = 'w-full aspect-video';
+        iframe.allowFullscreen = true;
+
+        const info = document.createElement('div');
+        info.className = 'p-3 flex-1 flex flex-col justify-between';
+        info.innerHTML = `
+          <h3 class="font-semibold text-gray-900 text-sm line-clamp-2">${video.title}</h3>
+          <p class="text-xs text-gray-500 mt-1">${video.author.name}</p>
+        `;
+
+        const btn = document.createElement('button');
+        btn.className = 'mt-3 bg-cyan-400 hover:bg-cyan-500 text-white font-semibold py-2 px-4 rounded-lg w-full';
+        btn.textContent = 'Download Thumbnail';
+        btn.onclick = async () => {
+          try {
+            const response = await fetch(video.thumbnail);
+            const blob = await response.blob();
+            const blobUrl = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = blobUrl;
+            link.download = "HMK_CodeWeb_Thumbnails_Search.jpg";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(blobUrl);
+          } catch (err) {
+            alert('Failed to download thumbnail.');
+          }
+        };
+
+        info.appendChild(btn);
+        card.appendChild(iframe);
+        card.appendChild(info);
+        resultsContainer.appendChild(card);
+      });
+    } catch (e) {
+      console.error(e);
+      resultsContainer.innerHTML = `<p class="text-red-500 text-center py-6">Error fetching search results.</p>`;
+    }
+  }
+</script>
+
+</body>
+</html>

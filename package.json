@@ -1,0 +1,30 @@
+{
+  "name": "downloadyt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@mrnima/facebook-downloader": "^1.0.0",
+    "@xaviabot/fb-downloader": "^1.0.14",
+    "btch-downloader": "^6.0.5",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "nodetube": "^0.5.1",
+    "npms-search": "^1.2.0",
+    "yt-streamer": "^6.7.23",
+    "ytdl": "^1.4.1",
+    "ytdl-core": "^4.11.5",
+    "ytdl-core-enhanced": "^1.4.1",
+    "ytdlr": "^3.0.1",
+    "ytdownloader.js": "^1.0.9"
+  }
+}
