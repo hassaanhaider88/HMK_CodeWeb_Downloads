@@ -1,65 +1,67 @@
-const express = require('express');
-const cors = require('cors');
-const { youtube } = require('btch-downloader');
+const express = require("express");
+const cors = require("cors");
+const { youtube } = require("btch-downloader");
+const { translate } = require("@vitalets/google-translate-api");
+const requestLogger = require("./RequestLogger.js");
+
 
 // const { Youtube } = require("nodetube");
- 
-const getFBInfo = require('@xaviabot/fb-downloader');
-const { search } = require('npms-search');
-const ytdl = require('ytdl-core-enhanced');
+
+const getFBInfo = require("@xaviabot/fb-downloader");
+const { search } = require("npms-search");
+const ytdl = require("ytdl-core-enhanced");
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(requestLogger);
 
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
   res.send("YouTube & Facebook Downloader API");
 });
 
 // ✅ POST: YouTube Thumbnail Info
-app.post('/yt-thumbnail', async (req, res) => {
+app.post("/yt-thumbnail", async (req, res) => {
   const { url } = req.body;
 
   if (!url) {
     return res.status(400).json({
       data: {
-        developer: '@prm2.0',
+        developer: "@prm2.0",
         status: false,
-        message: 'Missing YouTube video URL in body'
-      }
+        message: "Missing YouTube video URL in body",
+      },
     });
   }
 
   try {
     const Data = await youtube(url);
-    
+
     res.json({
-      data: Data
+      data: Data,
     });
   } catch (error) {
     res.status(500).json({
       data: {
-        developer: '@prm2.0',
+        developer: "@prm2.0",
         status: false,
-        message: 'Failed to fetch YouTube data',
-        error: error.message
-      }
+        message: "Failed to fetch YouTube data",
+        error: error.message,
+      },
     });
   }
 });
 
-
 // ✅ POST: Facebook Downloader
-app.post('/fb-down', async (req, res) => {
+app.post("/fb-down", async (req, res) => {
   const { url } = req.body;
-
 
   if (!url) {
     return res.status(400).json({
       success: false,
-      message: 'Missing Facebook video URL in body'
+      message: "Missing Facebook video URL in body",
     });
   }
 
@@ -67,26 +69,25 @@ app.post('/fb-down', async (req, res) => {
     const result = await getFBInfo(url);
     res.json({
       success: true,
-      data: result
+      data: result,
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: 'Failed to fetch Facebook video data',
-      error: error.message
+      message: "Failed to fetch Facebook video data",
+      error: error.message,
     });
   }
 });
 
-
 // ✅ POST: Package Search
-app.post('/search', async (req, res) => {
-  const {SearchQuery}  = req.body;
+app.post("/search", async (req, res) => {
+  const { SearchQuery } = req.body;
 
   if (!SearchQuery) {
     return res.status(400).json({
       success: false,
-      message: 'Missing SearchQuery in body'
+      message: "Missing SearchQuery in body",
     });
   }
 
@@ -94,17 +95,49 @@ app.post('/search', async (req, res) => {
     const result = await search(SearchQuery);
     res.json({
       success: result.status,
-      data: result.results
+      data: result.results,
     });
   } catch (err) {
     res.status(500).json({
       success: false,
-      message: err.message
+      message: err.message,
     });
   }
 });
 
+app.get("/get-yt", async (req, res) => {
+  try {
+    const { UserSearch } = req.query;
+    const result = await search(UserSearch);
+    res.json({
+      success: result.status,
+      data: result.results,
+    });
+  } catch (error) {
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+});
+
+app.get("/tranlate", async (req, res) => {
+  try {
+    const { textToTranslate, Lang } = req.query;
+    const { text } = await translate(textToTranslate, { to: Lang });
+
+    res.json({
+      success: true,
+      data: text,
+    });
+  } catch (error) {
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+});
 
 app.listen(3000, () => {
-  console.log('✅ Server running on http://localhost:3000');
+  console.log("✅ Server running on http://localhost:3000");
 });
