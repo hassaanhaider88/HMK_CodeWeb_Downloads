@@ -1,9 +1,18 @@
 const express = require("express");
 const cors = require("cors");
 const { youtube } = require("btch-downloader");
-const { translate } = require("@vitalets/google-translate-api");
 const requestLogger = require("./RequestLogger.js");
-
+const { writeFileSync } = require("fs");
+const {
+  translate,
+  Translator,
+  speak,
+  singleTranslate,
+  batchTranslate,
+  languages,
+  isSupported,
+  getCode,
+} = require("google-translate-api-x");
 
 // const { Youtube } = require("nodetube");
 
@@ -124,11 +133,11 @@ app.get("/get-yt", async (req, res) => {
 app.get("/tranlate", async (req, res) => {
   try {
     const { textToTranslate, Lang } = req.query;
-    const { text } = await translate(textToTranslate, { to: Lang });
-
+    // const { text } = await translate(textToTranslate, { to: Lang });
+    const data = await translate(textToTranslate, { to: Lang });
     res.json({
       success: true,
-      data: text,
+      data: data.text,
     });
   } catch (error) {
     res.json({

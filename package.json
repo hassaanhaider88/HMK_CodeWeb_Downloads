@@ -20,6 +20,7 @@
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "express-requests-logger": "^4.0.3",
+    "google-translate-api-x": "^10.7.2",
     "nodetube": "^0.5.1",
     "npms-search": "^1.2.0",
     "youtube-transcript": "^1.2.1",
